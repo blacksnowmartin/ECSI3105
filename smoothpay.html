@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmoothPay - Airtime Top-up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-green-50 via-white to-teal-50 overflow-x-hidden"
+  >
+    <div class="container mx-auto px-3 py-2 max-w-md">
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <div class="flex justify-center mb-3 p-4">
+          <img src="/uploads/4.png" alt="SmoothPAY" class="h-12 w-auto rounded-lg" />
+        </div>
+
+        <!-- Promotional Banner -->
+        <div
+          class="relative bg-gradient-to-r from-green-600 via-green-700 to-teal-600 rounded-xl p-4 mb-4 shadow-lg overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 rounded-full transform -translate-y-10 translate-x-10"
+          ></div>
+          <div class="relative z-10">
+            <span
+              class="inline-block bg-yellow-400 text-yellow-900 mb-2 font-semibold px-2 py-1 rounded-full text-xs"
+              >🎉 Special Offer</span
+            >
+            <p class="text-white font-semibold text-sm leading-tight">
+              Ni rahisi! Pata  10%  instant discount kwa kila ununuzi wa airtime
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <form id="airtime-form" action="">
+        <div
+          class="shadow-xl border-0 bg-white bg-opacity-90 rounded-2xl overflow-hidden"
+        >
+          <div
+            class="bg-gradient-to-r from-green-600 to-teal-600 p-3 text-center"
+          >
+            <h2 class="text-lg font-bold text-white">Airtime Top-up</h2>
+            <p class="text-green-100 text-xs mt-1">
+              Quick and secure mobile recharge
+            </p>
+          </div>
+
+          <div class="p-4 space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <!-- Phone Number -->
+              <div class="space-y-2">
+                <label
+                  for="phone"
+                  class="block text-xs font-semibold text-gray-800"
+                  >Phone number</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    name="buy_for"
+                    type="tel"
+                    placeholder=""
+                    class="w-full pl-7 h-10 border-2 border-gray-200 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:ring-opacity-50 rounded-xl text-xs font-medium bg-gray-50 bg-opacity-50 transition-all duration-200 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Amount -->
+              <div class="space-y-2">
+                <label
+                  for="amount"
+                  class="block text-xs font-semibold text-gray-800"
+                  >Amount (KSh)</label
+                >
+                <input
+                  name="amount"
+                  type="number"
+                  placeholder="100"
+                  min="1"
+                  max="50000"
+                  class="w-full h-10 border-2 border-gray-200 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:ring-opacity-50 rounded-xl text-xs font-medium bg-gray-50 bg-opacity-50 transition-all duration-200 focus:outline-none text-center"
+                />
+              </div>
+            </div>
+
+            <div class="flex justify-between text-xs text-gray-500 -mt-2">
+              <span></span>
+              <span>Min: 6 • Max: 10,000</span>
+            </div>
+
+            <!-- M-Pesa -->
+            <div class="space-y-2">
+              <label
+                for="mpesa"
+                class="block text-xs font-semibold text-gray-800"
+                >M-Pesa phone number</label
+              >
+              <div class="relative">
+                <div
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  name="mpesa_number"
+                  type="tel"
+                  placeholder=""
+                  class="w-full pl-10 h-10 border-2 border-gray-200 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:ring-opacity-50 rounded-xl text-sm font-medium bg-gray-50 bg-opacity-50 transition-all duration-200 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- Buy Button -->
+            <button
+              id="buyBtn"
+              type="submit"
+              class="w-full h-10 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-bold text-sm rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+            >
+              <span class="button-text">Buy Airtime Now</span>
+              <svg
+                class="button-spinner w-4 h-4 animate-spin hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Support Info -->
+            <div
+              class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 border border-blue-100"
+            >
+              <div class="flex items-start gap-2">
+                <div class="bg-blue-100 p-1.5 rounded-lg">
+                  <svg
+                    class="w-3 h-3 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-blue-900 mb-1">
+                    Need assistance?
+                  </p>
+                  <p class="text-xs text-blue-700">
+                    Contact us through
+                    <a
+                      href="tel:+254720781810"
+                      class="font-bold underline hover:text-blue-900 transition-colors"
+                      >+254720781810</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Download App -->
+      <div class="mt-3">
+        <a
+        target="_blank"
+        href="https://play.google.com/store/apps/details?id=co.smoothtelairtime.app&amp;hl=en"
+          class="w-full h-10 bg-gray-900 text-white hover:bg-gray-800 border-0 font-bold text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center"
+        >
+          <div class="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              class="w-5 h-5 mr-2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.954 11.616l2.957-2.957L6.36 3.291c-.633-.342-1.226-.39-1.746-.016l8.34 8.341zm3.461 3.462l3.074-1.729c.6-.336.929-.812.929-1.34 0-.527-.329-1.004-.928-1.34l-2.783-1.563-3.133 3.132 2.841 2.84zM4.1 4.002c-.064.197-.1.417-.1.658v14.705c0 .381.084.709.236.97l8.097-8.098L4.1 4.002zm8.854 8.855l-8.032 8.032c.19.088.405.138.639.138.697 0 1.295-.342 1.674-.539l9.427-5.304-3.708-2.327z"
+              />
+            </svg>
+            <div class="flex flex-row gap-2">
+              <div class="text-xs text-gray-300">GET IT ON</div>
+              <div class="text-xs font-bold text-white">Google Play</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-3">
+        <p class="text-xs text-gray-400 mt-1">
+          © 2025 SmoothPay . All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      id="statusModal"
+      class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 hidden"
+    >
+      <div
+        class="bg-white rounded-xl shadow-xl max-w-sm w-full p-6 text-center space-y-4"
+      >
+        <div id="modalIcon" class="text-4xl"></div>
+        <h3 id="modalTitle" class="text-lg font-semibold"></h3>
+        <p id="modalMessage" class="text-sm text-gray-600"></p>
+        <button
+          onclick="closeModal()"
+          class="mt-3 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm rounded-xl font-semibold transition"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://api.ipify.org?format=json"></script>
+    <script src="/js/validator.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
