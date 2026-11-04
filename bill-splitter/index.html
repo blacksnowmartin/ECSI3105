@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeSplit - Bill Splitter</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-slate-800 p-6 rounded-2xl shadow-xl w-full max-w-md border border-slate-700 transition-all duration-300">
+        <h1 class="text-2xl font-bold text-center mb-6 text-indigo-400">💸 VibeSplit</h1>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-1">Bill Total ($)</label>
+                <input type="number" id="bill" value="0" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Tip (%)</label>
+                    <input type="number" id="tip" value="15" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Number of People</label>
+                    <input type="number" id="people" value="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-slate-900/50 rounded-xl border border-indigo-500/20 text-center">
+                <span class="text-sm text-slate-400 block mb-1">Total Per Person</span>
+                <span id="result" class="text-4xl font-extrabold text-indigo-400">$0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const billInput = document.getElementById('bill');
+        const tipInput = document.getElementById('tip');
+        const peopleInput = document.getElementById('people');
+        const resultSpan = document.getElementById('result');
+
+        function calculate() {
+            const bill = parseFloat(billInput.value) || 0;
+            const tip = parseFloat(tipInput.value) || 0;
+            const people = parseInt(peopleInput.value) || 1;
+            
+            if (people < 1) return;
+            
+            const totalTip = bill * (tip / 100);
+            const finalTotal = bill + totalTip;
+            const perPerson = finalTotal / people;
+            
+            resultSpan.textContent = `$${perPerson.toFixed(2)}`;
+        }
+
+        [billInput, tipInput, peopleInput].forEach(input => input.addEventListener('input', calculate));
+    </script>
+</body>
+</html>
