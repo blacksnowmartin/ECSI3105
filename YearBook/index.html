@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class of 2026 — Digital Yearbook</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --primary: #1e3a8a;
+      --accent: #d97706;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #172554);
+      color: #fff;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      color: #dbeafe;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .top-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    .panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.9rem;
+      font-size: 0.95rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid #93c5fd;
+      border-color: var(--primary);
+    }
+
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      font-size: 0.85rem;
+      padding: 0.45rem 0.85rem;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-bar input {
+      margin-bottom: 0;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grad-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grad-photo {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #e0e7ff;
+    }
+
+    .grad-body {
+      padding: 1.15rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grad-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .grad-major {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
+
+    .grad-quote {
+      font-style: italic;
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .grad-detail {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .signatures {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .signatures h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .sig-list {
+      list-style: none;
+      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
+      max-height: 90px;
+      overflow-y: auto;
+    }
+
+    .sig-list li {
+      background: #f9fafb;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.3rem;
+    }
+
+    .sig-form {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .sig-form input {
+      margin-bottom: 0;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎓 Class of 2026 Digital Yearbook</h1>
+    <p>Share your senior quote, favorite campus memory, and sign your classmates' pages.</p>
+  </header>
+
+  <main class="container">
+    <div class="top-grid">
+      <!-- Left: Add Graduate Entry Form -->
+      <section class="panel">
+        <h2>Add Your Yearbook Page</h2>
+        <form id="gradForm">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" placeholder="e.g., Amina Mwangi" required />
+
+          <label for="major">Course / Major *</label>
+          <input type="text" id="major" placeholder="e.g., BSc. Computer Science" required />
+
+          <label for="photo">Photo (Optional)</label>
+          <input type="file" id="photo" accept="image/*" />
+
+          <label for="quote">Senior Quote *</label>
+          <textarea id="quote" rows="2" placeholder="A quote you'll always remember..." required></textarea>
+
+          <label for="memory">Favorite Memory *</label>
+          <textarea id="memory" rows="2" placeholder="Late night group projects, campus events..." required></textarea>
+
+          <label for="nextStep">What's Next?</label>
+          <input type="text" id="nextStep" placeholder="e.g., Junior Developer / Grad School" />
+
+          <button type="submit" style="width: 100%;">Publish to Yearbook</button>
+        </form>
+      </section>
+
+      <!-- Right: Yearbook Wall -->
+      <section>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search by name, major, or memory..." />
+        </div>
+        <div id="cardsContainer" class="cards-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "class_yearbook_2026_v1";
+
+    const sampleGraduates = [
+      {
+        id: 1,
+        name: "Brian Kamau",
+        major: "BSc. Software Engineering",
+        photo: "https://unsplash.com",
+        quote: "It always seems impossible until it's compiled without errors.",
+        memory: "Winning the annual hackathon after 36 hours fueled only by tea and mandazi.",
+        nextStep: "Backend Engineer in Nairobi",
+        signatures: [
+          "Faith: Congrats bro! Never forget our database project!",
+          "Kevin: Best debugging partner ever."
+        ]
+      },
+      {
+        id: 2,
+        name: "Faith Ochieng",
+        major: "Bachelor of Commerce (Finance)",
+        photo: "https://unsplash.com",
+        quote: "She believed she could, so she graduated.",
+        memory: "Friday evening discussions at the student center and graduation photoshoot day.",
+        nextStep: "Financial Analyst Trainee",
+        signatures: [
+          "Brian: Wishing you huge success ahead!"
+        ]
+      }
+    ];
+
+    function getGraduates() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleGraduates));
+        return sampleGraduates;
+      }
+      return JSON.parse(saved);
+    }
+
+    function saveGraduates(list) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function renderGraduates(filterText = "") {
+      const container = document.getElementById("cardsContainer");
+      const graduates = getGraduates();
+      const query = filterText.toLowerCase().trim();
+
+      const filtered = graduates.filter(g =>
+        g.name.toLowerCase().includes(query) ||
+        g.major.toLowerCase().includes(query) ||
+        g.quote.toLowerCase().includes(query) ||
+        g.memory.toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="panel"><p>No graduates match your search yet.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(grad => `
+        <article class="grad-card">
+          <img
+            class="grad-photo"
+            src="${grad.photo || 'https://unsplash.com'}"
+            alt="${escapeHtml(grad.name)}"
+          />
+          <div class="grad-body">
+            <div class="grad-name">${escapeHtml(grad.name)}</div>
+            <div class="grad-major">${escapeHtml(grad.major)}</div>
+            <blockquote class="grad-quote">"${escapeHtml(grad.quote)}"</blockquote>
+            <p class="grad-detail"><strong>Favorite Memory:</strong> ${escapeHtml(grad.memory)}</p>
+            ${grad.nextStep ? `<p class="grad-detail"><strong>What's Next:</strong> ${escapeHtml(grad.nextStep)}</p>` : ""}
+
+            <div class="signatures">
+              <h4>Yearbook Signatures (${grad.signatures.length})</h4>
+              <ul class="sig-list">
+                ${grad.signatures.map(sig => `<li>${escapeHtml(sig)}</li>`).join("")}
+              </ul>
+              <form class="sig-form" onsubmit="addSignature(event, ${grad.id})">
+                <input type="text" placeholder="Your Name: Congrats..." required />
+                <button type="submit" class="btn-accent">Sign</button>
+              </form>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function addSignature(event, gradId) {
+      event.preventDefault();
+      const input = event.target.querySelector("input");
+      const note = input.value.trim();
+      if (!note) return;
+
+      const graduates = getGraduates();
