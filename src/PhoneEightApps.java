@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class PhoneHomeScreen extends JFrame {
-    private JPanel mainScreen;
-    private CardLayout cardLayout;
+public class PhoneEightApps extends JFrame {
+    private final JPanel mainScreen;
+    private final CardLayout cardLayout;
 
-    public PhoneHomeScreen() {
+    public PhoneEightApps() {
         setTitle("Smartphone Simulator");
-        setSize(380, 680); // Mimics a standard phone aspect ratio
+        setSize(380, 680);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -20,11 +20,8 @@ public class PhoneHomeScreen extends JFrame {
         cardLayout = new CardLayout();
         mainScreen = new JPanel(cardLayout);
 
-        // 1. Setup the main home screen view
         JPanel homeScreenView = createHomeScreen();
         mainScreen.add(homeScreenView, "Home");
-
-        // 2. Setup the 8 functional app views
         mainScreen.add(createCalculatorApp(), "Calculator");
         mainScreen.add(createClockApp(), "Clock");
         mainScreen.add(createNotesApp(), "Notes");
@@ -38,12 +35,10 @@ public class PhoneHomeScreen extends JFrame {
         cardLayout.show(mainScreen, "Home");
     }
 
-    // --- HOME SCREEN DESIGN ---
     private JPanel createHomeScreen() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(28, 28, 30)); // Sleek dark mode wallpaper
+        panel.setBackground(new Color(28, 28, 30));
 
-        // Top Status Bar (Simulating battery and modern cell signals)
         JPanel statusBar = new JPanel(new BorderLayout());
         statusBar.setBackground(new Color(20, 20, 20));
         statusBar.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -55,12 +50,10 @@ public class PhoneHomeScreen extends JFrame {
         statusBar.add(battery, BorderLayout.EAST);
         panel.add(statusBar, BorderLayout.NORTH);
 
-        // Grid of Apps (4x2 layout for 8 apps)
         JPanel appGrid = new JPanel(new GridLayout(4, 2, 20, 20));
         appGrid.setBackground(new Color(28, 28, 30));
         appGrid.setBorder(BorderFactory.createEmptyBorder(40, 30, 40, 30));
 
-        // Add the 8 functional application icons
         appGrid.add(createAppIcon("🧮 Calculator", "Calculator", new Color(255, 159, 10)));
         appGrid.add(createAppIcon("⏰ Clock", "Clock", new Color(94, 92, 230)));
         appGrid.add(createAppIcon("📝 Notes", "Notes", new Color(255, 214, 10)));
@@ -74,7 +67,6 @@ public class PhoneHomeScreen extends JFrame {
         return panel;
     }
 
-    // Helper to generate styled interactive app launcher buttons
     private JButton createAppIcon(String name, String screenName, Color bgColor) {
         JButton button = new JButton(name);
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -86,7 +78,6 @@ public class PhoneHomeScreen extends JFrame {
         return button;
     }
 
-    // Standard structural navbar inside apps to return to the home screen
     private JPanel createBottomNavBar() {
         JPanel navBar = new JPanel();
         navBar.setBackground(new Color(20, 20, 20));
@@ -99,7 +90,6 @@ public class PhoneHomeScreen extends JFrame {
         return navBar;
     }
 
-    // Generic frame decorator helper to assemble full views with standard layout rules
     private JPanel buildAppContainer(String title, JPanel appContent) {
         JPanel container = new JPanel(new BorderLayout());
         JLabel header = new JLabel(title, SwingConstants.CENTER);
@@ -115,7 +105,6 @@ public class PhoneHomeScreen extends JFrame {
         return container;
     }
 
-    // --- APP 1: CALCULATOR ---
     private JPanel createCalculatorApp() {
         JPanel content = new JPanel(new BorderLayout());
         JTextField display = new JTextField("0");
@@ -131,11 +120,9 @@ public class PhoneHomeScreen extends JFrame {
         b2.addActionListener(e -> display.setText("0"));
         keys.add(b1); keys.add(b2);
         content.add(keys, BorderLayout.CENTER);
-
         return buildAppContainer("Calculator", content);
     }
 
-    // --- APP 2: CLOCK ---
     private JPanel createClockApp() {
         JPanel content = new JPanel(new GridBagLayout());
         JLabel timeLabel = new JLabel();
@@ -151,7 +138,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Live Clock", content);
     }
 
-    // --- APP 3: NOTES ---
     private JPanel createNotesApp() {
         JPanel content = new JPanel(new BorderLayout());
         JTextArea textArea = new JTextArea("Type your quick thoughts here...");
@@ -160,7 +146,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Quick Notes", content);
     }
 
-    // --- APP 4: WEATHER ---
     private JPanel createWeatherApp() {
         JPanel content = new JPanel(new GridBagLayout());
         JLabel report = new JLabel("☀️ Sunny, 24°C");
@@ -169,7 +154,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Weather Forecast", content);
     }
 
-    // --- APP 5: CONTACTS ---
     private JPanel createContactsApp() {
         JPanel content = new JPanel(new BorderLayout());
         String[] people = {"Mom 📞", "Dad 📞", "Best Friend 📞", "Work Boss 📞"};
@@ -179,7 +163,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Contacts List", content);
     }
 
-    // --- APP 6: FLASHLIGHT ---
     private JPanel createFlashlightApp() {
         JPanel content = new JPanel(new GridBagLayout());
         JButton toggle = new JButton("OFF");
@@ -205,7 +188,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Flashlight Tool", content);
     }
 
-    // --- APP 7: DICE ROLLER ---
     private JPanel createDiceApp() {
         JPanel content = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -225,7 +207,6 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("Dice Roller", content);
     }
 
-    // --- APP 8: SETTINGS ---
     private JPanel createSettingsApp() {
         JPanel content = new JPanel(new FlowLayout());
         JCheckBox modeToggle = new JCheckBox("Airplane Mode Enabled");
@@ -234,10 +215,9 @@ public class PhoneHomeScreen extends JFrame {
         return buildAppContainer("System Settings", content);
     }
 
-    // --- MAIN EXECUTION ENTRY POINT ---
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new PhoneHomeScreen().setVisible(true);
+            new PhoneEightApps().setVisible(true);
         });
     }
 }

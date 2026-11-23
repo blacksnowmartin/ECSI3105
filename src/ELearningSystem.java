@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Course {
-    private String title;
-    private String description;
+    private final String title;
+    private final String description;
 
     public Course(String title, String description) {
         this.title = title;
@@ -19,16 +19,15 @@ class Course {
     }
 }
 
-class ELearningSystem {
-    private ArrayList<Course> courses;
+public class ELearningSystem {
+    private final ArrayList<Course> courses;
 
     public ELearningSystem() {
         courses = new ArrayList<>();
     }
 
     public void addCourse(String title, String description) {
-        Course course = new Course(title, description);
-        courses.add(course);
+        courses.add(new Course(title, description));
     }
 
     public void displayCourses() {
@@ -38,9 +37,7 @@ class ELearningSystem {
             System.out.println();
         }
     }
-}
 
-public class Main {
     public static void main(String[] args) {
         ELearningSystem system = new ELearningSystem();
         Scanner scanner = new Scanner(System.in);
@@ -54,13 +51,10 @@ public class Main {
 
             System.out.println("Enter course description: ");
             String description = scanner.nextLine();
-
             system.addCourse(title, description);
         }
 
         System.out.println("Courses added:");
         system.displayCourses();
-
-        // Save this file as ELearningSystem.java
     }
 }
