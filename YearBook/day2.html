@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graduation Application Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 6px; box-sizing: border-box; }
+    button { background: #1a56db; color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-top: 16px; }
+    button:hover { background: #1e429f; }
+    .status-box { margin-top: 12px; padding: 12px; background: #f3f4f6; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Graduation Application Portal</h1>
+
+  <div class="card">
+    <h2>Apply for Graduation</h2>
+    <form id="gradForm">
+      <label for="studentId">Student / Admission Number</label>
+      <input type="text" id="studentId" required placeholder="e.g., SCT211-0045/2022" />
+
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" required placeholder="Jane Doe" />
+
+      <label for="program">Programme</label>
+      <select id="program" required>
+        <option value="">Select programme</option>
+        <option value="BSc Computer Science">BSc Computer Science</option>
+        <option value="BCom Finance">BCom Finance</option>
+        <option value="BA Economics">BA Economics</option>
+      </select>
+
+      <button type="submit">Submit Application</button>
+    </form>
+    <div id="submitMessage" class="status-box" style="display:none;"></div>
+  </div>
+
+  <div class="card">
+    <h2>Check Application Status</h2>
+    <label for="lookupId">Enter Student / Admission Number</label>
+    <input type="text" id="lookupId" placeholder="e.g., SCT211-0045/2022" />
+    <button type="button" id="checkBtn">Check Status</button>
+    <div id="statusResult" class="status-box" style="display:none;"></div>
+  </div>
+
+  <script>
+    const applications = new Map();
+
+    document.getElementById("gradForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const studentId = document.getElementById("studentId").value.trim().toUpperCase();
+      const fullName = document.getElementById("fullName").value.trim();
+      const program = document.getElementById("program").value;
+
+      const record = {
+        studentId,
+        fullName,
+        program,
+        status: "Pending Clearance",
+        submittedAt: new Date().toLocaleDateString()
+      };
+      applications.set(studentId, record);
+
+      const msg = document.getElementById("submitMessage");
+      msg.style.display = "block";
+      msg.textContent = `Submitted for ${fullName} (${studentId}) — Status: ${record.status}`;
+      e.target.reset();
+    });
+
+    document.getElementById("checkBtn").addEventListener("click", () => {
+      const lookupId = document.getElementById("lookupId").value.trim().toUpperCase();
+      const resBox = document.getElementById("statusResult");
+      resBox.style.display = "block";
+
+      if (!lookupId) {
+        resBox.textContent = "Please enter an admission number.";
+        return;
+      }
+
+      const record = applications.get(lookupId);
+      if (!record) {
+        resBox.textContent = `No application found for ${lookupId}.`;
+      } else {
+        resBox.textContent = `${record.fullName} (${record.program}) — ${record.status} (Submitted: ${record.submittedAt})`;
+      }
+    });
+  </script>
+</body>
+</html>
